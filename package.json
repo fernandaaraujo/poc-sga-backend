@@ -1,0 +1,43 @@
+{
+  "name": "project_name",
+  "version": "1.0.0",
+  "description": "project_name",
+  "author": "Fernanda Araujo",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && mkdir dist/sga && cp index.js dist/sga/index.js && cp -r lib dist/sga/lib && cp -r conf dist/sga/conf && cp package.json dist/sga/package.json && cd dist/sga/ && npm i --production && mkdir log",
+    "check": "./node_modules/.bin/eslint ./**.js test;",
+    "mocha": "./node_modules/mocha/bin/mocha --recursive",
+    "start": "node index.js",
+    "debug": "./node_modules/.bin/mocha --recursive --debug-brk",
+    "coverage": "istanbul cover --print both _mocha -- -R spec --recursive && open ./coverage/lcov-report/index.html",
+    "test": "export NODE_ENV=test && npm run coverage",
+    "posttest": "./node_modules/.bin/istanbul check-coverage --statements 95 --branches 70 --functions 100"
+  },
+  "dependencies": {
+    "body-parser": "~1.19.x",
+    "cors": "^2.8.5",
+    "express": "~4.17.x",
+    "morgan": "~1.9.x",
+    "nconf": "~0.10.x",
+    "node-json-db": "^1.0.1",
+    "uuid": "^7.0.3",
+    "winston": "~2.2.x",
+    "winston-daily-rotate-file": "~1.0.x"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^2.1.0",
+    "@stryker-mutator/html-reporter": "^2.1.0",
+    "@stryker-mutator/javascript-mutator": "^2.1.0",
+    "@stryker-mutator/mocha-framework": "^2.1.0",
+    "@stryker-mutator/mocha-runner": "^2.1.0",
+    "chai": "~4.2.x",
+    "eslint": "~6.3.x",
+    "istanbul": "^0.4.5",
+    "jshint": "~2.10.x",
+    "jshint-stylish": "~2.2.x",
+    "mocha": "~6.2.x",
+    "rewire": "~4.0.x",
+    "supertest": "~4.0.x"
+  }
+}
