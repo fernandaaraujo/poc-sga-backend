@@ -61,18 +61,30 @@ describe('Unit Database tests', () => {
     });
 
     describe('standards', () => {
-        it('get standards gna', () => {
-            const gnaList = database.getStandardsGNA();
-            const list = {"name":"Relatório Anual de Lavra (RAL)","status":"Atrasado"};
+        it('get standards gna predefined list', () => {
+            const itemID = "4a12a604-bae8-40a6-97e3-8b07723d3268";
+            const gnaList = database.getStandardsFromGNA();
+            const list = {
+                "4a12a604-bae8-40a6-97e3-8b07723d3268": {
+                    "name":"Relatório Anual de Lavra (RAL)",
+                    "status":"Atrasado"
+                }
+            };
 
-            assert.strictEqual(gnaList, list);
+            assert.deepEqual(gnaList, list);
         });
 
-        t('get standards ca', () => {
-            const acList = database.getStandardsCA();
-            const list = {"name":"Fornecer Relatório Anual de Lavra (RAL)","status":"Em andamento","comments":"Atividade iniciada pelo responsável técnico da mineradora no dia 20/04/2020."};
+        it('get standards ca predefined list', () => {
+            const acList = database.getStandardsFromCA();
+            const list = {
+                "4a12a604-bae8-40a6-97e3-8b07723d3269": {
+                    "name":"Fornecer Relatório Anual de Lavra (RAL)",
+                    "status":"Em andamento",
+                    "comments":"Atividade iniciada pelo responsável técnico da mineradora no dia 20/04/2020."
+                }
+            };
 
-            assert.strictEqual(gnaList, list);
+            assert.deepEqual(acList, list);
         });
     });
 });
